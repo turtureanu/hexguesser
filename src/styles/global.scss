@@ -1,0 +1,9 @@
+@use "./variables.scss" as *;
+
+html, body {
+    margin: 0;
+    height: 100%;
+    font-family: 'Courier New', Courier, monospace;
+    color: $color;
+    background: $background;
+}
