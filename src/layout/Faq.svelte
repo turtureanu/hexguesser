@@ -51,21 +51,8 @@
 	@use '../styles/variables.scss' as *;
 	@use '../styles/button.scss' as *;
 
-	.red,
-	.green,
-	.blue {
-		font-weight: 800;
-	}
-	.red {
-		color: red;
-	}
-
-	.green {
-		color: green;
-	}
-
-	.blue {
-		color: blue;
+	.btn-expand {
+		width: 100%;
 	}
 
 	.faq {

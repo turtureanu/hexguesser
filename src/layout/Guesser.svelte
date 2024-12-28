@@ -169,6 +169,7 @@
 	.answer {
 		font-size: 1.5rem;
 		text-align: center;
+		text-shadow: 0.1ch 0.1ch 0 $dark;
 	}
 
 	.win {
