@@ -43,9 +43,9 @@
 		diff += 256 - Math.abs(greenGenerated - greenUser);
 		diff += 256 - Math.abs(blueGenerated - blueUser);
 
-		console.log(diff);
+		diff = diff / 3 / (256 / 100);
 
-		return diff ? diff / 3 : 0;
+		return diff ? diff : 0;
 	});
 
 	// addEventListeners should start after mount
@@ -91,10 +91,7 @@
 <div class="how-far-container">
 	<div
 		class="how-far"
-		style={'width: ' +
-			getScore() / (256 / 100) +
-			'%;' +
-			`background-color: ${getScore() < 33 ? 'red' : getScore() >= 33 && getScore() <= 66 ? 'orange' : 'green'}`}
+		style={`width: ${getScore()}%; background-color: ${getScore() < 33 ? 'red' : getScore() >= 33 && getScore() <= 66 ? 'orange' : 'lightgreen'}`}
 	></div>
 </div>
 
@@ -137,9 +134,15 @@
 	@use 'sass:math';
 	@use '../styles/variables' as *;
 
-	$input-size: 2.5rem;
+	$input-size: 2.625rem;
 
 	.btn-container {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		align-items: center;
+		justify-content: center;
+		padding: 0.5em;
 		margin: 2em auto;
 		width: fit-content;
 	}
@@ -180,14 +183,15 @@
 	}
 
 	.how-far-container {
-		width: 80vw;
-		max-width: 20rem;
+		width: 80%;
+		max-width: 346px;
 		margin: 0 auto;
 		outline: solid black 2px;
 	}
+
 	.how-far {
-		max-width: 20rem;
-		height: 1rem;
+		max-width: 346px;
+		height: 1.5rem;
 	}
 
 	.input-red {

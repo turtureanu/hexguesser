@@ -1,2 +1,3 @@
-[ ] Implement grading and a progress bar
-    [ ] Display messages like "really far", "far", "not quite", "close", "really close"
+[x] Implement grading and a progress bar
+    [-] Display messages like "really far", "far", "not quite", "close", "really close"
+    // use colors instead
