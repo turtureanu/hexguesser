@@ -3,7 +3,9 @@
 	import Faq from '../layout/Faq.svelte';
 </script>
 
-<h1>Guess the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/hex-color">HEX</a>code!</h1>
+<h1>
+	Guess the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/hex-color">HEX</a> code!
+</h1>
 
 <Guesser />
 <Faq />
