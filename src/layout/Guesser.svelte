@@ -2,10 +2,10 @@
 	import { onMount } from 'svelte';
 	import { fade, fly } from 'svelte/transition';
 
-	let colors: string[] = [];
-	let generatedColor: string = '';
-	let isAssistToggled: boolean = false;
-	let isAnswerShown = false;
+	let colors: string[] = $state([]);
+	let generatedColor: string = $state('');
+	let isAssistToggled: boolean = $state(false);
+	let isAnswerShown = $state(false);
 
 	const getUserHex = () => {
 		return colors.length === 6 ? '#' + colors.join('') : '';
@@ -32,6 +32,21 @@
 			parseInt(hex.slice(5, 7), 16)
 		];
 	};
+
+	const getScore = $state(() => {
+		const [redUser, greenUser, blueUser] = hexToRGB('#' + colors.join(''));
+		const [redGenerated, greenGenerated, blueGenerated] = hexToRGB(generatedColor);
+
+		let diff = 0;
+
+		diff += 256 - Math.abs(redGenerated - redUser);
+		diff += 256 - Math.abs(greenGenerated - greenUser);
+		diff += 256 - Math.abs(blueGenerated - blueUser);
+
+		console.log(diff);
+
+		return diff ? diff / 3 : 0;
+	});
 
 	// addEventListeners should start after mount
 	onMount(() => {
@@ -72,6 +87,16 @@
 </script>
 
 <div class="square" style={`background-color: ${generatedColor}`}></div>
+
+<div class="how-far-container">
+	<div
+		class="how-far"
+		style={'width: ' +
+			getScore() / (256 / 100) +
+			'%;' +
+			`background-color: ${getScore() < 33 ? 'red' : getScore() >= 33 && getScore() <= 66 ? 'orange' : 'green'}`}
+	></div>
+</div>
 
 {#if isAnswerShown}
 	<p class="answer" transition:fade={{ duration: 300 }} style={`color:${generatedColor}`}>
@@ -152,6 +177,17 @@
 			border: 2px solid $dark;
 			outline: none;
 		}
+	}
+
+	.how-far-container {
+		width: 80vw;
+		max-width: 20rem;
+		margin: 0 auto;
+		outline: solid black 2px;
+	}
+	.how-far {
+		max-width: 20rem;
+		height: 1rem;
 	}
 
 	.input-red {
